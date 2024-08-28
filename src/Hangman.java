@@ -964,8 +964,7 @@ public class Hangman
             }
         }
         if(correctChars.containsAll(charList) && charList.containsAll(correctChars)) {
-            System.out.println("\nYou win!\nWant to play again?");
-            System.out.println("y/n");
+            System.out.println("\n\nYou win!\nWant to play again?\ny/n");
             switch (sc.next().toLowerCase().toCharArray()[0]) {
                 case 'y':
                     new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
