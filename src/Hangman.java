@@ -963,8 +963,6 @@ public class Hangman
                     gameLoop();
             }
         }
-        System.out.println(correctChars);
-        System.out.println(charList);
         if(correctChars.containsAll(charList) && charList.containsAll(correctChars)) {
             System.out.println("\nYou win!\nWant to play again?");
             System.out.println("y/n");
