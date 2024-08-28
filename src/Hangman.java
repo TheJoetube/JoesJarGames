@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Random;
 import java.util.ArrayList;
@@ -863,6 +864,7 @@ public class Hangman
     int tries = 10;
     ArrayList<Character> correctChars = new ArrayList<Character>();
     ArrayList<Character> guessedChars = new ArrayList<Character>();
+    ArrayList<Character> charList = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
     char guessedChar;
     String[] hangmans = {" ---\n |\n 0\n\\|/\n/ \\",
@@ -904,7 +906,13 @@ public class Hangman
         guessedChar = ' ';
         correctChars = new ArrayList<>();
         guessedChars = new ArrayList<>();
+        charList = new ArrayList<>();
         tries = 10;
+        for(Character c: curWord) {
+            if(!containsChar(charList, c)) {
+                charList.add(c);
+            }
+        }
     }
 
     public boolean containsChar(ArrayList<Character> arr, Character c) {
@@ -939,17 +947,34 @@ public class Hangman
             System.out.println("\nYou lose!\n");
             System.out.println("The correct word was: ");
             System.out.print(curWord);
-            return;
+            System.out.println("Do you want to play again?\ny/n");
+            switch (sc.next().toLowerCase().toCharArray()[0]) {
+                case 'y':
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                    initGame();
+                    break;
+
+                case 'n':
+                    GameSelector g = new GameSelector();
+                    break;
+
+                default:
+                    System.out.println("Invalid option.");
+                    gameLoop();
+            }
         }
-        if(correctChars.size() >= curWord.length) {
+        System.out.println(correctChars);
+        System.out.println(charList);
+        if(correctChars.containsAll(charList) && charList.containsAll(correctChars)) {
             System.out.println("\nYou win!\nWant to play again?");
             System.out.println("y/n");
             switch (sc.next().toLowerCase().toCharArray()[0]) {
                 case 'y':
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
                     initGame();
                     break;
                 case 'n':
-                    return;
+                    GameSelector g = new GameSelector();
                 default:
                     System.out.println("Invalid option.");
                     gameLoop();
