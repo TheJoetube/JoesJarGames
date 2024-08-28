@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
@@ -116,20 +117,39 @@ class TwentyFourtyEight
         System.out.println("Score:" + score);
     }
 
-    private void checkWin()
-    {
+    private void checkWin() throws IOException, InterruptedException {
         for (Integer[] integers : gameBoard) {
             for (Integer integer : integers) {
                 if (integer != null && !endless && integer == 2048) {
                     gameWon = true;
                     System.out.println("You won!");
+                    System.out.println("Do you want to play again?");
+                    System.out.println("[1] Yes");
+                    System.out.println("[2] No");
+                    try {
+                        switch (sc.nextInt()) {
+                            case 1:
+                                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                                initGame();
+                                break;
+
+                            case 2:
+                                GameSelector g = new GameSelector();
+                                break;
+
+                            default:
+                                System.out.println("Invalid option.");
+                                gameLoop();
+                        }
+                    } catch(InputMismatchException e) {
+                        checkWin();
+                    }
                 }
             }
         }
     }
 
-    private void checkLose()
-    {
+    private void checkLose() throws IOException, InterruptedException {
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard[i].length; j++) {
                 if(gameBoard[i][j] == null) {
@@ -151,6 +171,27 @@ class TwentyFourtyEight
         }
         gameWon = true; //fuck it, im using the same var, it only matters what's on screen anyway
         System.out.println("You lost!");
+        System.out.println("Do you want to play again?");
+        System.out.println("[1] Yes");
+        System.out.println("[2] No");
+        try {
+            switch (sc.nextInt()) {
+                case 1:
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                    initGame();
+                    break;
+
+                case 2:
+                    GameSelector g = new GameSelector();
+                    break;
+
+                default:
+                    System.out.println("Invalid option.");
+                    gameLoop();
+            }
+        } catch(InputMismatchException e) {
+            checkLose();
+        }
     }
 
     private void compress(String dir)

@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GameSelector
@@ -22,27 +23,36 @@ public class GameSelector
                 "\\==\\, `-' /  '.='. -   .' /==/ ,     /\\==\\ - , /       \\==\\, `-' /\\==\\ _.\\=\\.-'/==/  /\\ ,  )        /==/ _  ,  |==\\ _.\\=\\.-'/==/  / / , /==/ ,     /\\==\\ - , / \n" +
                 " `--`----'     `--`--''   `--`-----``  `--`---'         `--`----'  `--`        `--`-`--`--'         `--`------' `--`        `--`./  `--``--`-----``  `--`---'  \n");
         System.out.println("Choose a game:\n");
-        System.out.println("[1] 2048\n[2] Minesweeper\n[3] Hangman");
-        switch(sc.nextInt()) {
-            case 1:
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                TwentyFourtyEight twentyFourtyEight = new TwentyFourtyEight();
-                break;
+        System.out.println("[1] 2048\n[2] Minesweeper\n[3] Hangman\n[4] Tic-Tac-Toe");
+        try {
+            switch(sc.nextInt()) {
+                case 1:
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                    TwentyFourtyEight twentyFourtyEight = new TwentyFourtyEight();
+                    break;
 
-            case 2:
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                Minesweeper minesweeper = new Minesweeper();
-                break;
+                case 2:
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                    Minesweeper minesweeper = new Minesweeper();
+                    break;
 
-            case 3:
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                Hangman hangman = new Hangman();
-                break;
+                case 3:
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                    Hangman hangman = new Hangman();
+                    break;
 
-            default:
-                System.out.println("Please select a valid option.");
-                initMenu();
-                break;
+                case 4:
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                    TicTacToe ticTacToe = new TicTacToe();
+                    break;
+
+                default:
+                    System.out.println("Please select a valid option.");
+                    initMenu();
+                    break;
+            }
+        } catch(InputMismatchException e) {
+            initMenu();
         }
     }
 

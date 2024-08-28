@@ -1,4 +1,5 @@
 import java.awt.event.KeyEvent;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.IOException;
 import java.util.Random;
@@ -304,19 +305,23 @@ public class Minesweeper
             System.out.println("\nDo you want to play again?");
             System.out.println("[1]: Yes");
             System.out.println("[2]: No");
-            switch (sc.next())
-            {
-                case "1":
-                    gameModeInit();
-                    break;
+            try {
+                switch (sc.next()) {
+                    case "1":
+                        gameModeInit();
+                        break;
 
-                case "2":
-                    break;
+                    case "2":
+                        GameSelector g = new GameSelector();
+                        break;
 
-                default:
-                    System.out.println("Invalid option");
-                    gameLoop();
-                    break;
+                    default:
+                        System.out.println("Invalid option");
+                        gameLoop();
+                        break;
+                }
+            } catch(InputMismatchException e) {
+                gameLoop();
             }
         }
         else if(gameWon)
@@ -325,19 +330,23 @@ public class Minesweeper
             System.out.println("\nDo you want to play again?");
             System.out.println("[1]: Yes");
             System.out.println("[2]: No");
-            switch (sc.next())
-            {
-                case "1":
-                    gameModeInit();
-                    break;
+            try {
+                switch (sc.next())
+                {
+                    case "1":
+                        gameModeInit();
+                        break;
 
-                case "2":
-                    break;
+                    case "2":
+                        break;
 
-                default:
-                    System.out.println("Invalid option");
-                    gameLoop();
-                    break;
+                    default:
+                        System.out.println("Invalid option");
+                        gameLoop();
+                        break;
+                }
+            } catch(InputMismatchException e) {
+                gameLoop();
             }
         }
         while(!gameWon && !gameLost)

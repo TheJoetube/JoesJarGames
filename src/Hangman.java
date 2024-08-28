@@ -1,8 +1,5 @@
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.Random;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Hangman
 {
@@ -947,34 +944,46 @@ public class Hangman
             System.out.println("\nYou lose!\n");
             System.out.println("The correct word was: ");
             System.out.print(curWord);
-            System.out.println("Do you want to play again?\ny/n");
-            switch (sc.next().toLowerCase().toCharArray()[0]) {
-                case 'y':
-                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                    initGame();
-                    break;
+            System.out.println("Do you want to play again?");
+            System.out.println("[1] Yes");
+            System.out.println("[2] No");
+            try {
+                switch (sc.nextInt()) {
+                    case 1:
+                        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                        initGame();
+                        break;
 
-                case 'n':
-                    GameSelector g = new GameSelector();
-                    break;
+                    case 2:
+                        GameSelector g = new GameSelector();
+                        break;
 
-                default:
-                    System.out.println("Invalid option.");
-                    gameLoop();
+                    default:
+                        System.out.println("Invalid option.");
+                        gameLoop();
+                }
+            } catch(InputMismatchException e) {
+                gameLoop();
             }
         }
         if(correctChars.containsAll(charList) && charList.containsAll(correctChars)) {
-            System.out.println("\n\nYou win!\nWant to play again?\ny/n");
-            switch (sc.next().toLowerCase().toCharArray()[0]) {
-                case 'y':
-                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                    initGame();
-                    break;
-                case 'n':
-                    GameSelector g = new GameSelector();
-                default:
-                    System.out.println("Invalid option.");
-                    gameLoop();
+            System.out.println("\n\nYou win!\nWant to play again?");
+            System.out.println("[1] Yes");
+            System.out.println("[2] No");
+            try {
+                switch (sc.nextInt()) {
+                    case 1:
+                        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                        initGame();
+                        break;
+                    case 2:
+                        GameSelector g = new GameSelector();
+                    default:
+                        System.out.println("Invalid option.");
+                        gameLoop();
+                }
+            } catch(InputMismatchException e) {
+                gameLoop();
             }
         }
         guessedChar = sc.next().toCharArray()[0];
