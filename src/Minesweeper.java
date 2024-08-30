@@ -275,7 +275,7 @@ public class Minesweeper
     public void revealZeros(int x, int y) {
         if (x < 0 || x > size - 1 || y < 0 || y > size - 1) return; // check for bounds
 
-        if (minefield[y][x].bombCount == 0 && !minefield[y][x].uncovered && !minefield[y][x].isBomb) {
+        if (!minefield[y][x].uncovered && !minefield[y][x].isBomb) {
             minefield[y][x].uncovered = true;
             revealZeros( x+1, y );
             revealZeros( x-1, y );
