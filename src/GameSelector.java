@@ -28,7 +28,7 @@ public class GameSelector
             switch(sc.nextInt()) {
                 case 1:
                     new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                    TwentyFourtyEight twentyFourtyEight = new TwentyFourtyEight();
+                    TwentyFortyEight twentyFortyEight = new TwentyFortyEight();
                     break;
 
                 case 2:

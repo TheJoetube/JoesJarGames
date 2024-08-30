@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.io.IOException;
 
-class TwentyFourtyEight
+class TwentyFortyEight
 {
     Integer[][] gameBoard = new Integer[4][4];
     int emptySpaces = 16;
@@ -14,7 +14,7 @@ class TwentyFourtyEight
     Random rand = new Random();
     Scanner sc = new Scanner(System.in);
 
-    public TwentyFourtyEight() throws IOException, InterruptedException {
+    public TwentyFortyEight() throws IOException, InterruptedException {
         initGame();
     }
 
@@ -374,6 +374,6 @@ class TwentyFourtyEight
     }
 
     /*public static void main(String[] args) throws IOException, InterruptedException {
-        TwentyFourtyEight game = new TwentyFourtyEight();
+        TwentyFortyEight game = new TwentyFortyEight();
     }*/
 }
