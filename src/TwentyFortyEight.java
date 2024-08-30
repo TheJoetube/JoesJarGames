@@ -76,8 +76,7 @@ class TwentyFortyEight
     }
 
     private void printBoard() throws IOException, InterruptedException {
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-
+        GameSelector.clearScreen();
         for(int i = 0; i < gameBoard.length; i++)
         {
             if(i > 0){
@@ -129,7 +128,7 @@ class TwentyFortyEight
                     try {
                         switch (sc.nextInt()) {
                             case 1:
-                                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                                GameSelector.clearScreen();
                                 initGame();
                                 break;
 
@@ -177,7 +176,7 @@ class TwentyFortyEight
         try {
             switch (sc.nextInt()) {
                 case 1:
-                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                    GameSelector.clearScreen();
                     initGame();
                     break;
 

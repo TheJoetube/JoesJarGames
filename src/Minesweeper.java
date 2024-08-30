@@ -45,7 +45,7 @@ public class Minesweeper
         gameWon = false;
         gameLost = false;
         hardMode = false;
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        GameSelector.clearScreen();
         System.out.println("\n" +
                 "                                                                                                                           \n" +
                 "          ____                                                                                                             \n" +
@@ -173,7 +173,7 @@ public class Minesweeper
     }
 
     public void printBoard() throws IOException, InterruptedException {
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        GameSelector.clearScreen();
         gameWon = true;
         for (Field[] fields : minefield) {
             for (Field field : fields) {

@@ -16,7 +16,7 @@ public class TicTacToe
     public void initGame() throws IOException, InterruptedException {
         marks = new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "};
         yourTurn = false;
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        GameSelector.clearScreen();
         System.out.println("\n" +
                 " _____  _  ____     _____  ____  ____     _____  ____  _____\n" +
                 "/__ __\\/ \\/   _\\   /__ __\\/  _ \\/   _\\   /__ __\\/  _ \\/  __/\n" +
@@ -47,7 +47,7 @@ public class TicTacToe
             botPlace();
         }
         marks[x] = "O";
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        GameSelector.clearScreen();
         printBoard();
     }
 
@@ -191,9 +191,9 @@ public class TicTacToe
         else {
             int choice = sc.nextInt();
             if(contains(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9}, choice)) {
-                if(marks[choice - 1] == " ") {
+                if(marks[choice - 1].equals(" ")) {
                     marks[choice - 1] = "X";
-                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                    GameSelector.clearScreen();
                     printBoard();
                 }
             }
