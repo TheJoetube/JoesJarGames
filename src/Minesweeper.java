@@ -87,8 +87,8 @@ public class Minesweeper
                 break;
         }
         System.out.println("\nPick a difficulty:");
-        System.out.println("[1]: Normal");
-        System.out.println("[2]: Hard");
+        System.out.println("[1]: Normal (zero spreading)");
+        System.out.println("[2]: Hard (no zero spreading)");
         switch (sc.next())
         {
             case "1":

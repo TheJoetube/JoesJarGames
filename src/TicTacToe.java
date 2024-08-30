@@ -5,6 +5,7 @@ public class TicTacToe
 {
     String[] marks;
     boolean yourTurn;
+    String characterCode;
 
     Scanner sc = new Scanner(System.in);
     Random rand = new Random();
@@ -29,14 +30,31 @@ public class TicTacToe
 
     public void printBoard() throws IOException, InterruptedException {
         yourTurn = !yourTurn;
-        System.out.println("\n" + marks[0] + "|" + marks[1] + "|" + marks[2] +
-                           "\n" + marks[3] + "|" + marks[4] + "|" + marks[5] +
-                           "\n" + marks[6] + "|" + marks[7] + "|" + marks[8]);
+        System.out.println();
+        for(int i = 0; i < marks.length; i++) {
+            if(marks[i].equals(" ")) {
+                characterCode = "\033[40;34;1m";
+                System.out.print(characterCode + (i + 1));
+            }
+            else
+            {
+                characterCode = "\033[40;37;1m";
+                System.out.print(characterCode + marks[i]);
+            }
+            if ((i + 1) % 3 == 0) {
+                System.out.println();
+            }
+            else {
+                characterCode = "\033[40;37;1m";
+                System.out.print(characterCode + "|");
+            }
+        }
+        characterCode = "\033[40;37;1m";
         if(yourTurn) {
-            System.out.println("\nIt's your turn.");
+            System.out.println(characterCode + "\nIt's your turn.");
         }
         else {
-            System.out.println("\nIt's the Bot's turn.");
+            System.out.println(characterCode + "\nIt's the Bot's turn.");
         }
         gameLoop();
     }
