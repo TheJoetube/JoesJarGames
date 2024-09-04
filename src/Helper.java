@@ -14,9 +14,7 @@ public class Helper
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         }
         else {
-            //new ProcessBuilder("/bin/bash", "-c", "clear").inheritIO().start().waitFor();
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
+            System.out.print("\033\143");
         }
     }
 
