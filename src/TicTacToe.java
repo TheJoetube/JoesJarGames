@@ -17,7 +17,7 @@ public class TicTacToe
     public void initGame() throws IOException, InterruptedException {
         marks = new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "};
         yourTurn = false;
-        GameSelector.clearScreen();
+        Helper.clearScreen();
         System.out.println("\n" +
                 " _____  _  ____     _____  ____  ____     _____  ____  _____\n" +
                 "/__ __\\/ \\/   _\\   /__ __\\/  _ \\/   _\\   /__ __\\/  _ \\/  __/\n" +
@@ -33,28 +33,24 @@ public class TicTacToe
         System.out.println();
         for(int i = 0; i < marks.length; i++) {
             if(marks[i].equals(" ")) {
-                characterCode = "\033[40;34;1m";
-                System.out.print(characterCode + (i + 1));
+                System.out.print(Helper.colorText("black", "blue") + (i + 1));
             }
             else
             {
-                characterCode = "\033[40;37;1m";
-                System.out.print(characterCode + marks[i]);
+                System.out.print(Helper.colorText("black", "white") + marks[i]);
             }
             if ((i + 1) % 3 == 0) {
                 System.out.println();
             }
             else {
-                characterCode = "\033[40;37;1m";
-                System.out.print(characterCode + "|");
+                System.out.print(Helper.colorText("black", "white") + "|");
             }
         }
-        characterCode = "\033[40;37;1m";
         if(yourTurn) {
-            System.out.println(characterCode + "\nIt's your turn.");
+            System.out.println(Helper.colorText("black", "white") + "\nIt's your turn.");
         }
         else {
-            System.out.println(characterCode + "\nIt's the Bot's turn.");
+            System.out.println(Helper.colorText("black", "white") + "\nIt's the Bot's turn.");
         }
         gameLoop();
     }
@@ -65,7 +61,7 @@ public class TicTacToe
             botPlace();
         }
         marks[x] = "O";
-        GameSelector.clearScreen();
+        Helper.clearScreen();
         printBoard();
     }
 
@@ -211,7 +207,7 @@ public class TicTacToe
             if(contains(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9}, choice)) {
                 if(marks[choice - 1].equals(" ")) {
                     marks[choice - 1] = "X";
-                    GameSelector.clearScreen();
+                    Helper.clearScreen();
                     printBoard();
                 }
             }

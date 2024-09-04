@@ -950,7 +950,7 @@ public class Hangman
             try {
                 switch (sc.nextInt()) {
                     case 1:
-                        GameSelector.clearScreen();
+                        Helper.clearScreen();
                         initGame();
                         break;
 
@@ -973,7 +973,7 @@ public class Hangman
             try {
                 switch (sc.nextInt()) {
                     case 1:
-                        GameSelector.clearScreen();
+                        Helper.clearScreen();
                         initGame();
                         break;
                     case 2:
@@ -987,7 +987,7 @@ public class Hangman
             }
         }
         guessedChar = sc.next().toCharArray()[0];
-        GameSelector.clearScreen();
+        Helper.clearScreen();
         if(!containsChar(guessedChars, guessedChar)) {
             guessedChars.add(guessedChar);
         }

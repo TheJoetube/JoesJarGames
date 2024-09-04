@@ -69,6 +69,7 @@ class TwentyFortyEight
         }
         else if(emptySpaces > 0){
             generateNewNumber();
+            generateNewNumber();
         }
         else {
             return;
@@ -76,7 +77,7 @@ class TwentyFortyEight
     }
 
     private void printBoard() throws IOException, InterruptedException {
-        GameSelector.clearScreen();
+        Helper.clearScreen();
         for(int i = 0; i < gameBoard.length; i++)
         {
             if(i > 0){
@@ -128,7 +129,7 @@ class TwentyFortyEight
                     try {
                         switch (sc.nextInt()) {
                             case 1:
-                                GameSelector.clearScreen();
+                                Helper.clearScreen();
                                 initGame();
                                 break;
 
@@ -176,7 +177,7 @@ class TwentyFortyEight
         try {
             switch (sc.nextInt()) {
                 case 1:
-                    GameSelector.clearScreen();
+                    Helper.clearScreen();
                     initGame();
                     break;
 

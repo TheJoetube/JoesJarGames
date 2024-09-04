@@ -4,21 +4,11 @@ import java.util.Scanner;
 
 public class GameSelector
 {
-    public static String os = System.getProperty("os.name");
     Scanner sc = new Scanner(System.in);
 
     public GameSelector() throws IOException, InterruptedException {
-        clearScreen();
+        Helper.clearScreen();
         initMenu();
-    }
-
-    public static void clearScreen() throws IOException, InterruptedException {
-        if(os.contains("Windows")) {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        }
-        else {
-            new ProcessBuilder("/bin/bash", "-c", "clear").inheritIO().start().waitFor();
-        }
     }
 
     public void initMenu() throws IOException, InterruptedException {
@@ -37,22 +27,22 @@ public class GameSelector
         try {
             switch(sc.nextInt()) {
                 case 1:
-                    clearScreen();
+                    Helper.clearScreen();
                     TwentyFortyEight twentyFortyEight = new TwentyFortyEight();
                     break;
 
                 case 2:
-                    clearScreen();
+                    Helper.clearScreen();
                     Minesweeper minesweeper = new Minesweeper();
                     break;
 
                 case 3:
-                    clearScreen();
+                    Helper.clearScreen();
                     Hangman hangman = new Hangman();
                     break;
 
                 case 4:
-                    clearScreen();
+                    Helper.clearScreen();
                     TicTacToe ticTacToe = new TicTacToe();
                     break;
 
@@ -62,7 +52,8 @@ public class GameSelector
                     break;
             }
         } catch(InputMismatchException e) {
-            initMenu();
+            //initMenu();
+            return;
         }
     }
 

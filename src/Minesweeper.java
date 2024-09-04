@@ -1,4 +1,3 @@
-import java.awt.event.KeyEvent;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.IOException;
@@ -30,7 +29,6 @@ public class Minesweeper
     boolean gameWon = false;
     boolean gameLost = false;
     boolean hardMode = false;
-    String characterCode;
     Field[][] minefield;
     Scanner sc = new Scanner(System.in);
     Random rand = new Random();
@@ -45,7 +43,7 @@ public class Minesweeper
         gameWon = false;
         gameLost = false;
         hardMode = false;
-        GameSelector.clearScreen();
+        Helper.clearScreen();
         System.out.println("\n" +
                 "                                                                                                                           \n" +
                 "          ____                                                                                                             \n" +
@@ -173,71 +171,75 @@ public class Minesweeper
     }
 
     public void printBoard() throws IOException, InterruptedException {
-        GameSelector.clearScreen();
+        Helper.clearScreen();
         gameWon = true;
         for (Field[] fields : minefield) {
             for (Field field : fields) {
                 if(field.uncovered)
                 {
                     if (field.bombCount == 0 && !field.isBomb) {
-                        characterCode = "\033[40;37;1m";
-                        System.out.print(characterCode +"|");
+                        System.out.print(Helper.colorText("black", "white") + "|");
                         if(field == minefield[cursorPos[1]][cursorPos[0]]) {
-                            characterCode = "\033[47;30;1m";
+                            System.out.print(Helper.colorText("white", "black") + " ");
                         }
-                        System.out.print(characterCode + " ");
-                    } else if (field.isBomb) {
-                        characterCode = "\033[40;37;1m";
-                        System.out.print(characterCode + "|");
-                        characterCode = "\033[41;30;1m";
-                        System.out.print(characterCode + "*");
-                    } else {
-                        characterCode = "\033[40;37;1m";
-                        System.out.print(characterCode + "|");
-                        switch(field.bombCount)
+                        else
                         {
-                            case 1:
-                                characterCode = "\033[40;34;1m";
-                                break;
-
-                            case 2:
-                                characterCode = "\033[40;32;1m";
-                                break;
-
-                            case 3 | 4 | 5 | 6 | 7 | 8:
-                                characterCode = "\033[40;31;1m";
-                                break;
+                            System.out.print(Helper.colorText("black", "white") + " ");
                         }
+                    } else if (field.isBomb) {
+                        System.out.print(Helper.colorText("black", "white") + "|");
+                        System.out.print(Helper.colorText("red", "black") + "*");
+                    } else {
+                        System.out.print(Helper.colorText("black", "white") + "|");
                         if(field == minefield[cursorPos[1]][cursorPos[0]]) {
-                            characterCode = "\033[47;30;1m";
+                            System.out.print(Helper.colorText("white", "black") + field.bombCount);
                         }
-                        System.out.print(characterCode + field.bombCount);
+                        else
+                        {
+                            switch(field.bombCount)
+                            {
+                                case 1:
+                                    System.out.print(Helper.colorText("black", "blue") + field.bombCount);
+                                    break;
+
+                                case 2:
+                                    System.out.print(Helper.colorText("black", "green") + field.bombCount);
+                                    break;
+
+                                case 3 | 4 | 5 | 6 | 7 | 8:
+                                    System.out.print(Helper.colorText("black", "red") + field.bombCount);
+                                    break;
+                            }
+                        }
                     }
                 }
                 else if(field.flagged) {
-                    characterCode = "\033[40;37;1m";
-                    System.out.print(characterCode + "|");
+                    System.out.print(Helper.colorText("black", "white") + "|");
                     if(field == minefield[cursorPos[1]][cursorPos[0]]) {
-                        characterCode = "\033[47;30;1m";
+                        System.out.print(Helper.colorText("white", "black") + "⚑");
                     }
-                    System.out.print(characterCode + "⚑");
+                    else
+                    {
+                        System.out.print(Helper.colorText("black", "white") + "⚑");
+                    }
                 }
                 else
                 {
-                    characterCode = "\033[40;37;1m";
-                    System.out.print(characterCode + "|");
+                    System.out.print(Helper.colorText("black", "white") + "|");
                     if(field == minefield[cursorPos[1]][cursorPos[0]]) {
-                        characterCode = "\033[47;30;1m";
+                        System.out.print(Helper.colorText("white", "black") + "■");
                     }
-                    System.out.print(characterCode + "■");
+                    else
+                    {
+                        System.out.print(Helper.colorText("black", "white") + "■");
+                    }
                 }
                 if(field.isBomb && !field.flagged || !field.isBomb && field.flagged)
                 {
                     gameWon = false;
                 }
             }
-            characterCode = "\033[40;37;1m";
-            System.out.print(characterCode + "|");
+            System.out.print(Helper.colorText("black", "white") + "|");
             System.out.println();
         }
         //System.out.println(cursorPos[0] + "|" + cursorPos[1]);
