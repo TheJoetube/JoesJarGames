@@ -46,12 +46,7 @@ public class TicTacToe
                 System.out.print(Helper.colorText("black", "white") + "|");
             }
         }
-        if(yourTurn) {
-            System.out.println(Helper.colorText("black", "white") + "\nIt's your turn.");
-        }
-        else {
-            System.out.println(Helper.colorText("black", "white") + "\nIt's the Bot's turn.");
-        }
+        System.out.print(Helper.colorText("black", "white") + "");
         gameLoop();
     }
 
@@ -119,6 +114,12 @@ public class TicTacToe
     public void gameLoop() throws IOException, InterruptedException {
         switch (checkWinner(marks)) {
             case "None":
+                if(yourTurn) {
+                    System.out.println(Helper.colorText("black", "white") + "\nIt's your turn.");
+                }
+                else {
+                    System.out.println(Helper.colorText("black", "white") + "\nIt's the Bot's turn.");
+                }
                 break;
 
             case "Tie":

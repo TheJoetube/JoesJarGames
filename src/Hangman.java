@@ -942,8 +942,7 @@ public class Hangman
     public void gameLoop() throws IOException, InterruptedException {
         if(tries == 0) {
             System.out.println("\nYou lose!\n");
-            System.out.println("The correct word was: ");
-            System.out.print(curWord);
+            System.out.println("The correct word was: " + String.valueOf(curWord));
             System.out.println("Do you want to play again?");
             System.out.println("[1] Yes");
             System.out.println("[2] No");
